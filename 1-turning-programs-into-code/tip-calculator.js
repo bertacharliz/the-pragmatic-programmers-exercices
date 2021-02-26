@@ -16,17 +16,18 @@ const totalAmountBill = () => {
         //// Handeling messages error in negative number case
         let billAmountInput = document.querySelector('.BillAmount__input')
         let tipInput = document.querySelector('.Tip__input')
-        if(billAmountInput.value < 0) {
+        
+        if(billAmountInput.value || billAmountInput.value.startWith('-')) {
             billAmountErrorMessage.textContent = 'Negative numbers does not allowed'
-            return
+            billAmountErrorMessage.style.color ='red'
         } else {
+            console.log('toto')
             billAmountErrorMessage.textContent = ''
         }
         
-        console.log(tipInput.value)
         if(tipInput.value || tipInput.value.startWith('-')) {
             tipRateErrorMessage.textContent = 'Negative numbers does not allowed'
-            return
+            tipRateErrorMessage.style.color = 'red'
         } else {
             tipRateErrorMessage.textContent = ''
         }
