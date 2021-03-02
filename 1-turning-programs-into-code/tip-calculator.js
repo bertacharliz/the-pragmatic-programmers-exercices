@@ -16,40 +16,33 @@ const totalAmountBill = () => {
         //// Handeling messages error in negative number case
         let billAmountInput = document.querySelector('.BillAmount__input')
         let tipInput = document.querySelector('.Tip__input')
-        if(billAmountInput.value && billAmountInput.value.startsWith('-')) {
-            billAmountErrorMessage.textContent = 'Negative numbers does not allowed'
-            billAmountErrorMessage.style.color = 'red'
-            return
-        } else {
-            billAmountErrorMessage.textContent = ''
-        }
-        
-        if(tipInput.value && tipInput.value.startsWith('-')) {
-            tipRateErrorMessage.textContent = 'Negative numbers does not allowed'
-            tipRateErrorMessage.style.color = 'red'
-            return
-        } else {
-            tipRateErrorMessage.textContent = ''
-        }
 
         //// Handeling messages error in non-numeric value case
         // For bill amount 
-        if(document.querySelector('.BillAmount__input').value !== '' && isNaN(billAmount) && event.target.matches('.BillAmount__input')) {
-            billAmountErrorMessage.textContent = "Please enter a valid number for the bill amount" 
-            billAmountErrorMessage.style.color = "red"
-            return
-        } else {
-            billAmountErrorMessage.textContent = ''
+        if(event.target.matches('.BillAmount__input')) {
+            if(billAmountInput.value !== '' && isNaN(billAmount)) {
+                billAmountErrorMessage.textContent = "Please enter a valid number for the bill amount" 
+                billAmountErrorMessage.style.color = "red"
+            }
+            else if (billAmountInput.value && billAmountInput.value.startsWith('-')) {
+                billAmountErrorMessage.textContent = 'Negative numbers are not allowed'
+                billAmountErrorMessage.style.color = 'red'
+            } else {
+                billAmountErrorMessage.textContent = ''
+            }
         }
 
-        // For tip 
-        if(document.querySelector('.Tip__input').value !== '' && isNaN(tipRate) && event.target.matches('.Tip__input')) {
-            tipRateErrorMessage.textContent = 'Please enter a valid number for the tip rate'
-            tipRateErrorMessage.style.color = 'red'
-            return
-        } else {
-            tipRateErrorMessage.textContent = ''
-        }
+        if(event.target.matches('.Tip__input')) {
+            if(tipInput.value !== '' && isNaN(tipRate)) {
+                tipRateErrorMessage.textContent = 'Please enter a valid number for the tip rate'
+                tipRateErrorMessage.style.color = 'red'
+            } else if (tipInput.value && tipInput.value.startsWith('-')) {
+                tipRateErrorMessage.textContent = 'Negative numbers are not allowed'
+                tipRateErrorMessage.style.color = 'red'
+            } else {
+                tipRateErrorMessage.textContent = ''
+            }
+        }    
 
         // Computing and display the tip and total amount
         if(event.target.value.length < 1) return
