@@ -1,3 +1,4 @@
+// Handling Errors function
 const handlingErrors = (event, parameters) => {
     let selector = document.querySelector(parameters.inputSelector)
     let roundedValue = parseInt(document.querySelector(parameters.inputSelector).value)
@@ -16,6 +17,7 @@ const handlingErrors = (event, parameters) => {
     }
 }
 
+// Computing tip and total functions
 const computeTip = (billAmount, tipRate) => {
     return Math.ceil(billAmount * (tipRate/100) * 100) / 100
 }
@@ -24,19 +26,18 @@ const computeTotal = (billAmount, tip) => {
     return billAmount + tip
 }   
 
+// Executing functions at the event listener 
 const totalAmountBill = () => {
     let tip = 0
     let total = 0
 
     document.addEventListener('input',(event) => {
-        // Round fractions of a cent up to the next cent.
         let billAmount = parseInt(document.querySelector('.BillAmount__input').value)
         let tipRate = parseInt(document.querySelector('.Tip__input').value)
 
         handlingErrors(event, {inputSelector: '.BillAmount__input', errorElemId:'billAmountError', errorLabel:'bill amount'})
         handlingErrors(event, {inputSelector:'.Tip__input', errorElemId:'tipRateError', errorLabel:'tip'})
         
-
         // Computing and display the tip and total amount
         if(event.target.value.length < 1) return
         if(event.target.value.length > 1) {
