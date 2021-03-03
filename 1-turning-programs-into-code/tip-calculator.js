@@ -1,4 +1,26 @@
-const validateBillAmount = (event) => {
+const handlingErrors = (event, inputSelector, errorElemId) => {
+    let selector = document.querySelector(inputSelector)
+    let roundedValue = parseInt(document.querySelector(inputSelector).value)
+    let elemId = document.getElementById(errorElemId)
+    if (event.target.matches(inputSelector)) {
+        if (selector.value !== '' && isNaN(roundedValue)) {
+            elemId.textContent = "Please enter a valid number for the bill amount" 
+            elemId.style.color = "red"
+        }
+        else if (selector.value && selector.value.startsWith('-')) {
+            elemId.textContent = 'Negative numbers are not allowed'
+            elemId.style.color = 'red'
+        } else {
+            elemId.textContent = ''
+        }
+    }
+}
+
+
+
+
+
+/* const validateBillAmount = (event) => {
     let billAmountInput = document.querySelector('.BillAmount__input')
     let billAmount = parseInt(document.querySelector('.BillAmount__input').value)
     let billAmountErrorMessage = document.getElementById('billAmountError')
@@ -31,7 +53,7 @@ const validateTipAmount = (event) => {
             tipRateErrorMessage.textContent = ''
         }
     }    
-}
+} */
 
 const computeTip = (billAmount, tipRate) => {
     return Math.ceil(billAmount * (tipRate/100) * 100) / 100
@@ -50,8 +72,11 @@ const totalAmountBill = () => {
         let billAmount = parseInt(document.querySelector('.BillAmount__input').value)
         let tipRate = parseInt(document.querySelector('.Tip__input').value)
 
-        validateBillAmount(event)
-        validateTipAmount(event)
+        /* validateBillAmount(event)
+        validateTipAmount(event) */
+
+        handlingErrors(event, '.BillAmount__input', 'billAmountError')
+        handlingErrors(event, '.Tip__input', 'tipRateError')
 
         //// Handeling messages error in non-numeric value case
         // For bill amount 
