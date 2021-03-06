@@ -38,6 +38,7 @@ const totalAmountBill = () => {
         handlingErrors(event, {inputSelector: '.BillAmount__input', errorElemId:'billAmountError', errorLabel:'bill amount'})
         handlingErrors(event, {inputSelector:'.Tip__input', errorElemId:'tipRateError', errorLabel:'tip'})
         
+
         // Computing and display the tip and total amount
         if(event.target.value.length < 1) return
         if(event.target.value.length > 1) {
