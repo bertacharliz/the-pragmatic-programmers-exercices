@@ -17,6 +17,15 @@ const handlingErrors = (event, parameters) => {
     }
 }
 
+const showTipValue = () => {
+    let rangeSlider = document.getElementById('range-slider')
+    let rangeOutput = document.getElementById('range-output')
+
+    rangeOutput.innerHTML = rangeSlider.value
+    let cursorPosistion = (rangeSlider.value/rangeSlider.max)
+    rangeOutput.style.left = (cursorPosistion * 350 + 'px')
+}
+
 // Computing tip and total functions
 const computeTip = (billAmount, tipRate) => {
     return Math.ceil(billAmount * (tipRate/100) * 100) / 100
@@ -35,10 +44,13 @@ const totalAmountBill = () => {
         let billAmount = parseInt(document.querySelector('.BillAmount__input').value)
         let tipRate = parseInt(document.querySelector('.Tip__input').value)
 
-        handlingErrors(event, {inputSelector: '.BillAmount__input', errorElemId:'billAmountError', errorLabel:'bill amount'})
-        handlingErrors(event, {inputSelector:'.Tip__input', errorElemId:'tipRateError', errorLabel:'tip'})
-        
+        let rangeSlider = document.getElementById('range-line')
+        let rangeCursor = document.getElementById('range-cursor')
 
+        handlingErrors(event, {inputSelector: '.BillAmount__input', errorElemId:'billAmountError', errorLabel:'bill amount'})
+    /*  handlingErrors(event, {inputSelector:'.Tip__input', errorElemId:'tipRateError', errorLabel:'tip'}) */
+ 
+      showTipValue()      
         // Computing and display the tip and total amount
         if(event.target.value.length < 1) return
         if(event.target.value.length > 1) {
