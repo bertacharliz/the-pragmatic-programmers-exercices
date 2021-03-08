@@ -1,4 +1,4 @@
-const countingCaracteres = () => {
+const countingCharacteres = () => {
     document.addEventListener('input', (e) => {
         const inputValue = document.getElementById('input').value
         const inputLength = inputValue.length
@@ -10,4 +10,4 @@ const countingCaracteres = () => {
     }, false)
 }
 
-countingCaracteres()
+countingCharacteres()
