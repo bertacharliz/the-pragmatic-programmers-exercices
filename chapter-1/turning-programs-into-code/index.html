@@ -15,15 +15,9 @@
         </div>
         <div class="Tip__section">
             <label class="Tip__label">Tip rate</label>
-            <div class="Tip__range-slider">
-                <input id="range-slider" type="range" min="0" max="20" step="5" value="0" list="tickmarks" class="Tip__input" required placeholder="What is the tip?">
-                <output id="range-output" name="tip-pourcentage">0%</output>
-            </div>
+            <input type="text" class="Tip__input" required placeholder="What is the tip?">
+            <span id="tipRateError"></span>
         </div>
-        <!-- <div class="Tip__minmax">
-            <span>0</span>
-            <span>20</span>
-        </div> -->
         <div class="TipAmount__section">
             <label>Tip amount</label>
             <input type="text" class="Tip__Amount">
